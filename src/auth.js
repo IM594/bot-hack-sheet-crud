@@ -6,8 +6,8 @@ const { google } = require('googleapis');
 
 // 如果修改了这里的 scope，记得删除 token.json 然后重新oauth
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
-const TOKEN_PATH = path.join(process.cwd(), 'secrets', 'token.json');
-const CREDENTIALS_PATH = path.join(process.cwd(), 'secrets', 'client_secret_117427074209-4gpnpl3a3agqmjnuf9hoeu2roh04ugq8.apps.googleusercontent.com.json');
+const TOKEN_PATH = path.join(process.cwd(), 'src', 'secrets', 'token.json');
+const CREDENTIALS_PATH = path.join(process.cwd(), 'src', 'secrets', 'client_secret_117427074209-4gpnpl3a3agqmjnuf9hoeu2roh04ugq8.apps.googleusercontent.com.json');
 
 async function loadSavedCredentialsIfExist() {
     try {
