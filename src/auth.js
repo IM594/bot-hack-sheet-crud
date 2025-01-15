@@ -4,7 +4,7 @@ const process = require('process');
 const { OAuth2Client } = require('google-auth-library');
 const { google } = require('googleapis');
 
-// 如果修改了这些 scope，要删除 token.json，然后重新授权
+// 如果修改了这里的 scope，记得删除 token.json 然后重新oauth
 const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'client_secret_117427074209-4gpnpl3a3agqmjnuf9hoeu2roh04ugq8.apps.googleusercontent.com.json');
@@ -62,7 +62,7 @@ async function authenticateGoogle() {
             input: process.stdin,
             output: process.stdout,
         });
-        readline.question('请输入授权码（“code=”和“&scope=”之间的内容）: ', (code) => {
+        readline.question('请输入授权码（"code=" 和 "&scope=" 之间的内容）: ', (code) => {
             readline.close();
             resolve(code);
         });
