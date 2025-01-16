@@ -1,8 +1,8 @@
 // 当文档编辑时触发
 function onEdit(e) {
-  // 检查 B1 （版本号所在单元格）
-  if (e.range.getA1Notation() === 'B1') {
-    const WEBHOOK_URL = 'https://ac01-122-231-184-235.ngrok-free.app/sheet-update';
+  // 检查是否是 Version Control 这个 Sheet 的 B1 单元格
+  if (e.range.getA1Notation() === 'B1' && e.source.getActiveSheet().getName() === 'Version Control') {
+    const WEBHOOK_URL = 'https://4985-122-231-184-235.ngrok-free.app/sheet-update';
     
     try {
       const sheet = e.source.getActiveSheet();
@@ -30,16 +30,16 @@ function onEdit(e) {
 function createTriggers() {
   const ss = SpreadsheetApp.getActive();
   
-  // 删除所有现有触发器
+  // 先清空
   ScriptApp.getProjectTriggers().forEach(trigger => {
     ScriptApp.deleteTrigger(trigger);
   });
   
-  // 只设置编辑触发器
+  // 设置 onEdit 触发器
   ScriptApp.newTrigger('onEdit')
-    .forSpreadsheet(ss)
-    .onEdit()
-    .create();
+    .forSpreadsheet(ss) // 指定文档
+    .onEdit() // 触发时执行 onEdit() 函数
+    .create(); // 创建
     
-  Logger.log('编辑触发器设置成功');
+  Logger.log('onEdit 触发器设置成功');
 }

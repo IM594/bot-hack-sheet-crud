@@ -56,7 +56,7 @@ async function authenticateGoogle() {
 
     console.log('在浏览器里打开这个链接:', authUrl);
 
-    // 这里需要手动输入一下授权码
+    // 这里需要手动到命令行输入一下授权码
     const code = await new Promise((resolve) => {
         const readline = require('readline').createInterface({
             input: process.stdin,
