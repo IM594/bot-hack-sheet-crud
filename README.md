@@ -31,7 +31,30 @@ npm install
 └── README.md
 ```
 
-常用命令见 package.json。
+## 常用命令
+
+见 package.json。
+
+## 注意事项
+
+- `Code.gs` 在哪儿用？
+  - 需要放到 Google Sheet - Extension - App Script 中，不是在 nodejs 环境跑的。
+  - 它的主要作用是：
+    - 监听 Google Sheet 的更新，然后通过 webhook 通知到 nodejs 服务器。
+- `WEBHOOK_URL` 需要手动修改
+
+```
+const WEBHOOK_URL = 'https://4985-122-231-184-235.ngrok-free.app/sheet-update';
+
+// 这个 url 分为两部分：
+
+// 第一部分： https://4985-122-231-184-235.ngrok-free.app
+//   这个需要指向当前服务器所在地址 + 端口。目前代码这部分是 ngrok 内网穿透后的地址，这个地址背后监听的端口已经是3000，所以不用加端口号。
+//   但是，最终需要换成自己的服务器地址 + 端口。
+
+// 第二部分： /sheet-update
+//   这个是 server.js 中 app.post('/sheet-update', async (req, res) => { }) 中的 url
+```
 
 ## 参考资料
 
