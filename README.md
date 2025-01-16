@@ -2,6 +2,10 @@
 
 1. 克隆仓库
 
+```bash
+git clone https://github.com/IM594/bot-hack-sheet-crud.git
+```
+
 2. 安装依赖：
 
 ```bash
