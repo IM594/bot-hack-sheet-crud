@@ -8,7 +8,7 @@
     "crud-demo": "node src/crud-demo.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Vibe Bot Frontend Team",
   "license": "ISC",
   "description": "",
   "dependencies": {

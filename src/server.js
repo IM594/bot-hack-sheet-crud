@@ -3,7 +3,7 @@ process.removeAllListeners('warning');
 const express = require('express');
 const cors = require('cors');
 const { google } = require('googleapis');
-const { authenticate } = require('./auth');
+const { authenticate, initialize } = require('./auth');
 const app = express();
 
 app.use(cors());
@@ -53,6 +53,17 @@ app.post('/sheet-update', async (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
+// 在服务器启动之前，先进行认证初始化
+async function startServer() {
+    try {
+        await initialize();
+    } catch (error) {
+        process.exit(1);
+    }
+}
+
+startServer();
 
 app.listen(PORT, () => {
     console.log(`服务器运行在端口 ${PORT}`);
