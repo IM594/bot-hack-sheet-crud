@@ -13,7 +13,7 @@ npm install
 ```
 
 3. 配置：
-   - 将 Google Cloud Platform 生成的 `client_secret_<project_id>.json` 文件放在 `src/secrets/` 目录下，记得改名成 `client_secret.json`
+   - 将 [Google Cloud Platform](https://console.cloud.google.com/apis/credentials/oauthclient/117427074209-4gpnpl3a3agqmjnuf9hoeu2roh04ugq8.apps.googleusercontent.com?authuser=0&invt=AbmXSg&project=bot-hack-query) 下载下来的 `client_secret_<project_id>.json` 文件放在 `src/secrets/` 目录下，然后改名成 `client_secret.json`
    - 首次运行时会自动让你配合生成 `token.json`
 
 ## 项目结构
