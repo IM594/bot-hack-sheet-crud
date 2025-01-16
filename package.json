@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "crud-demo": "node src/crud-demo.js"
+    "crud-demo": "node src/demo/crud-demo.js"
   },
   "keywords": [],
   "author": "Vibe Bot Frontend Team",

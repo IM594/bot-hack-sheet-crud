@@ -1,9 +1,9 @@
 process.removeAllListeners('warning');
 
 const { google } = require('googleapis');
-const { authenticate } = require('./auth');
+const { authenticate } = require('../auth');
 
-const SPREADSHEET_ID = '1k22ToL4VlNiPJ1dtwaVEvZtGP4pmpvtmL6pSmM_UizY';
+const SPREADSHEET_ID = '1k22ToL4VlNiPJ1dtwaVEvZtGP4pmpvtmL6pSmM_UizY'; //指定一个 id
 const SHEET_RANGE = 'Sheet1!A:Z'; // 这样能支持动态的行数
 
 async function initializeSheets() {
@@ -117,7 +117,7 @@ async function runDemo() {
     }
 }
 
-// 用 api 修改文档不回触发 app script 的 onEdit 函数。
+// 注意！用 api 修改文档不回触发 app script 的 trigger，也就不会执行 onEdit 函数。
 runDemo();
 
 module.exports = {
