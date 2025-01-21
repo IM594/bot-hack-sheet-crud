@@ -45,7 +45,11 @@ app.post('/sheet-update', async (req, res) => {
         }
 
         // 转换数据并写入文件
-        const fileContents = convert2constant(allData);
+        const metadata = {
+            timestamp: req.body.timestamp,
+            version: req.body.newValue
+        };
+        const fileContents = convert2constant(allData, metadata);
         await Promise.all(
             Object.entries(fileContents).map(([filePath, content]) =>
                 fs.writeFile(path.join(process.cwd(), filePath), content)

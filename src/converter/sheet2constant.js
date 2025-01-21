@@ -23,11 +23,19 @@ function convertSheetDataToConstant(sheetData) {
   return { constantObj, comments };
 }
 
-function generateTSContent(constantName, data) {
+function generateTSContent(constantName, data, metadata) {
   const { constantObj, comments } = data;
+  const { timestamp, version } = metadata;
   
   // 生成带comment的constant 文件
   const lines = [];
+  
+  // 添加更新时间和版本信息
+  lines.push('/**');
+  lines.push(` * Last Updated: ${new Date(timestamp).toLocaleString()}`);
+  lines.push(` * Version: ${version}`);
+  lines.push(' */');
+  lines.push('');
   
   // ggmeet 写死的类型import
   if (constantName === 'GMEET_QUERIES_MAP') {
@@ -58,19 +66,19 @@ function generateTSContent(constantName, data) {
   return lines.join('\n');
 }
 
-function convert2constant(allData) {
+function convert2constant(allData, metadata) {
   try {
     // Google Meet
     const gmeetData = convertSheetDataToConstant(allData.GGMeet);
-    const gmeetContent = generateTSContent('GMEET_QUERIES_MAP', gmeetData);
+    const gmeetContent = generateTSContent('GMEET_QUERIES_MAP', gmeetData, metadata);
     
     // Zoom
     const zoomData = convertSheetDataToConstant(allData.Zoom);
-    const zoomContent = generateTSContent('ZOOMSDK_QUERIES_MAP', zoomData);
+    const zoomContent = generateTSContent('ZOOMSDK_QUERIES_MAP', zoomData, metadata);
     
     // Teams
     const teamsData = convertSheetDataToConstant(allData.Teams);
-    const teamsContent = generateTSContent('TEAMS_QUERIES_MAP', teamsData);
+    const teamsContent = generateTSContent('TEAMS_QUERIES_MAP', teamsData, metadata);
     
     return {
       'src/results/gmeet.ts': gmeetContent,

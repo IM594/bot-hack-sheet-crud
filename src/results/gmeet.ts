@@ -1,3 +1,8 @@
+/**
+ * Last Updated: 1/21/2025, 3:58:50 PM
+ * Version: 0.0.0-dev.1
+ */
+
 import { IGMeetQKeys } from "../../schema/queryKeys";
 
 export const GMEET_QUERIES_MAP: Record<IGMeetQKeys, string[]> = {

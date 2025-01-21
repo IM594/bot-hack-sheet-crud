@@ -1,3 +1,8 @@
+/**
+ * Last Updated: 1/21/2025, 3:58:50 PM
+ * Version: 0.0.0-dev.1
+ */
+
 export const TEAMS_QUERIES_MAP: Record<string, string[]> = {
   // Join button
   "join": [
