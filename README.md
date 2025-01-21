@@ -20,14 +20,24 @@ npm install
 
 ```
 .
-├── apps-script/
-│   ├── Code.gs            # App Script 代码，放到 Google Sheet - Extension - App Script 中
 ├── src/
-│   ├── server.js          # 主服务器文件
-│   ├── auth.js            # Google Oauth 认证用
-│   ├── crud-demo.js       # 增删改查示例代码
-│   └── secrets/           # 敏感文件集合
-├── package.json
+│   ├── apps-script/
+│   │   └── Code.gs              # App Script 代码，放到 Google Sheet - Extension - App Script 中
+│   ├── converter/
+│   │   └── sheet2constant.js    # 转换器
+│   ├── demo/
+│   │   ├── crud-demo.js         # 增删改查 示例代码
+│   │   └── convert2constant.js  # 转换器，将 Google Sheet 数据转换为 constants
+│   ├── result/
+│   │   ├── gmeet.ts             # 转换完的 Google Meet 的 constants
+│   │   ├── zoomSDK.ts           # 转换完的 Zoom 的 constants
+│   │   └── teams.ts             # 转换完的 Teams 的 constants
+│   ├── secrets/
+│   │   ├── client_secret.json   
+│   │   └── token.json           
+│   ├── auth.js                  # Google Oauth 认证用
+│   └── server.js                # 主服务器文件
+├── package.json 
 └── README.md
 ```
 

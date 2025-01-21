@@ -35,12 +35,12 @@ function generateTSContent(constantName, data) {
     lines.push('');
   }
   
-  // 添加类型声明(仅针对 gmeet.ts)
+  // 类型声明
   const typeDeclaration = constantName === 'GMEET_QUERIES_MAP' 
     ? `Record<IGMeetQKeys, string[]>` 
     : `Record<string, string[]>`;
   
-  // 开始
+  // 开始{
   lines.push(`export const ${constantName}: ${typeDeclaration} = {`);
   
   // 每个 constant 和对应 comment
@@ -52,7 +52,7 @@ function generateTSContent(constantName, data) {
     lines.push('');
   });
   
-  // 结束
+  // 结束}
   lines.push('};');
   
   return lines.join('\n');
@@ -73,9 +73,9 @@ function convert2constant(allData) {
     const teamsContent = generateTSContent('TEAMS_QUERIES_MAP', teamsData);
     
     return {
-      'src/result/gmeet.ts': gmeetContent,
-      'src/result/zoomSDK.ts': zoomContent, 
-      'src/result/teams.ts': teamsContent
+      'src/results/gmeet.ts': gmeetContent,
+      'src/results/zoomSDK.ts': zoomContent, 
+      'src/results/teams.ts': teamsContent
     };
   } catch (error) {
     console.error('转换失败:', error);

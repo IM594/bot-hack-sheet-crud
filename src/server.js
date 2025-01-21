@@ -4,7 +4,7 @@ const { authenticate, initialize } = require('./auth');
 const { google } = require('googleapis');
 const express = require('express');
 const cors = require('cors');
-const convert2constant = require('./converter/convert2constant');
+const convert2constant = require('./converter/sheet2constant');
 const path = require('path');
 const fs = require('fs').promises;
 
