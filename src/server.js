@@ -1,9 +1,13 @@
 process.removeAllListeners('warning');
 
+const { authenticate, initialize } = require('./auth');
+const { google } = require('googleapis');
 const express = require('express');
 const cors = require('cors');
-const { google } = require('googleapis');
-const { authenticate, initialize } = require('./auth');
+const convert2constant = require('./converter/convert2constant');
+const path = require('path');
+const fs = require('fs').promises;
+
 const app = express();
 
 app.use(cors());
@@ -40,10 +44,20 @@ app.post('/sheet-update', async (req, res) => {
             return res.status(200).json({ message: '所有 Sheet 为空' });
         }
 
-        // const sheetData = result.data.values[0][1];
-        // console.log('当前 Sheet 的版本号:', sheetData);
+        // 转换数据并写入文件
+        const fileContents = convert2constant(allData);
+        await Promise.all(
+            Object.entries(fileContents).map(([filePath, content]) =>
+                fs.writeFile(path.join(process.cwd(), filePath), content)
+            )
+        );
 
-        res.status(200).json({ message: '更新通知接收成功', data: allData });
+        console.log('文件更新成功');
+
+        res.status(200).json({
+            message: '更新通知接收成功，文件已更新',
+            data: allData
+        });
 
         console.log('\n');
     } catch (error) {
